@@ -1,0 +1,33 @@
+{
+    "name": "sinergi/security",
+    "type": "library",
+    "description": "Security Helpers",
+    "keywords": ["Security", "Helpers"],
+    "homepage": "https://github.com/sinergi/security",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gabriel Bull",
+            "email": "me@gabrielbull.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "symfony/console": "2.*",
+        "doctrine/orm": "2.*",
+        "psr/log": "~1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sinergi\\Security\\": "src/Security"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sinergi\\Security\\Tests\\": ["tests/Security/Tests", "tests/Security/Tests/_includes"]
+        }
+    }
+}
