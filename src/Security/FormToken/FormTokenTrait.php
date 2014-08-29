@@ -5,7 +5,7 @@ use Sinergi\Token\StringGenerator;
 
 trait FormTokenTrait
 {
-    private static $formTokenApcCacheKey = 'sinergi.form.token';
+    private static $formTokenApcCacheKey = 'sinergi.form.token.';
     private static $formTokenExpirationTime = 86400;
 
     /**
@@ -14,7 +14,7 @@ trait FormTokenTrait
     protected function createFormToken()
     {
         $token = StringGenerator::randomAlnum(128);
-        $cacheKey = self::$formTokenApcCacheKey . '.' . $token;
+        $cacheKey = self::$formTokenApcCacheKey . $token;
         apc_store($cacheKey, true, self::$formTokenExpirationTime);
         return $token;
     }
@@ -27,7 +27,7 @@ trait FormTokenTrait
     protected function validateFormToken($token)
     {
         $retval = false;
-        $cacheKey = self::$formTokenApcCacheKey . '.' . $token;
+        $cacheKey = self::$formTokenApcCacheKey . $token;
         if (apc_exists($cacheKey)) {
             $retval = apc_fetch($cacheKey);
             apc_delete($cacheKey);
